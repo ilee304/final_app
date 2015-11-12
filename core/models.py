@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+
 
 # Create your models here.
 class Post (models.Model):
@@ -9,3 +11,6 @@ class Post (models.Model):
 
   def __unicode__(self):
     return self.description
+
+  def get_absolute_url(self):
+    return reverse("post_detail", args=[self.id])
