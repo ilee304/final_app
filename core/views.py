@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from .models import *
 
@@ -24,3 +24,8 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
   model = Post
   template_name = 'post/post_detail.html'
+
+class PostUpdateView(UpdateView):
+  model = Post
+  template_name = 'post/post_form.html'
+  fields = ('description',)
