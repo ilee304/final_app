@@ -8,5 +8,6 @@ urlpatterns = patterns('',
    url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),
    url(r'^post/$', PostListView.as_view(), name='post_list'),
    url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post_detail'),
-   url(r'^post/update/(?P<pk>\d+)/$', PostUpdateView.as_view(), name='post_update')
+   url(r'^post/update/(?P<pk>\d+)/$', PostUpdateView.as_view(), name='post_update'),
+   url(r'^post/delete/(?P<pk>\d+)/$', PostDeleteView.as_view(), name='post_delete'),
 )
