@@ -31,6 +31,8 @@ class PostDetailView(DetailView):
     post = Post.objects.get(id=self.kwargs['pk'])
     comments = Comment.objects.filter(post = post)
     context ['comments'] = comments
+    user_comments = Comment.objects.filter(post=post, user=self.request.user)
+    context['user_comments'] = user_comments
     return context
 
 
@@ -65,6 +67,9 @@ class CommentCreateView(CreateView):
       return self.object.post.get_absolute_url()
 
     def form_valid(self, form):
+      post = Post.objects.get(id=self.kwargs['pk'])
+      if Comment.objects.filter(post=post, user=self.request.user).exists():
+          raise PermissionDenied()
       form.instance.user = self.request.user
       form.instance.post = Post.objects.get(id=self.kwargs['pk'])
       return super(CommentCreateView, self).form_valid(form)
