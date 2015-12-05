@@ -6,11 +6,11 @@
 <p>Last name: {{ user_in_view.last_name }}</p>
 <h3>Posts ({{ posts.count }})</h3>
 {% for post in posts %}
-    <p><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></p>
+<p><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></p>
 {% endfor %}
 <h3>Comments ({{ comments.count }})</h3>
 {% for comment in comments %}
-    <p><a href="{{ comment.post.get_absolute_url }}">{{ comment.post.title  }}</a></p>
-    <p>> {{ comment.text }}</p>
+<p><a href="{{ comment.post.get_absolute_url }}">{{ comment.post.title }}</a></p>
+<p>> {{ comment.text }}</p>
 {% endfor %}
 {% endblock %}
