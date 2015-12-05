@@ -177,3 +177,8 @@ class UserDeleteView(DeleteView):
         user.is_active = False
         user.save()
         return redirect(self.get_success_url())
+
+class SearchPostListView(PostListView):
+    def get_queryset(self):
+        incoming_query_string = self.request.GET.get('query','')
+        return Post.objects.filter(description__icontains=incoming_query_string)
